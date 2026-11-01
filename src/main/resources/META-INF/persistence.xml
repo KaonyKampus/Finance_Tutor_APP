@@ -1,7 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
-    <!-- Define Persistence Unit -->
-    <persistence-unit name="my_persistence_unit">
-        
+<persistence version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+    <!-- Persistence unit used by JpaUtil to create the EntityManagerFactory -->
+    <persistence-unit name="financetutorPU" transaction-type="RESOURCE_LOCAL">
+
+        <!-- JPA implementation -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <properties>
+            <!-- Connection to MariaDB (XAMPP) through the MySQL driver -->
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/financetutor?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=America/Bogota"/>
+            <property name="jakarta.persistence.jdbc.user" value="financetutor_app"/>
+            <property name="jakarta.persistence.jdbc.password" value="ft_dev_2026"/>
+
+            <!-- SQL dialect for MariaDB -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+
+            <!-- Creates and updates tables from the entities (development only) -->
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <!-- Shows the generated SQL in the console, to learn and debug -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
     </persistence-unit>
 </persistence>

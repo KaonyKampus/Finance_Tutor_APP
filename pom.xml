@@ -3,19 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <!-- Identidad del proyecto -->
     <groupId>com.kaonykk</groupId>
     <artifactId>FinanceTutorApp</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>FinanceTutorApp-1.0-SNAPSHOT</name>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <jakartaee>11.0.0</jakartaee>
     </properties>
-
     <dependencies>
         <!-- CONTRATOS (APIs): sirven para compilar. "provided" = no van en el .war -->
         <dependency>
@@ -30,7 +27,6 @@
             <version>6.1.0</version>
             <scope>provided</scope>
         </dependency>
-
         <!-- JSTL para los JSP: contrato + implementación (Tomcat no la trae) -->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
@@ -42,8 +38,6 @@
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>3.0.1</version>
         </dependency>
-
-        <!-- FASE 1 y 2: descomentar cuando lleguemos a la base de datos
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -54,9 +48,7 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>8.3.0</version>
         </dependency>
-        -->
     </dependencies>
-
     <build>
         <plugins>
             <!-- Compila el código para Java 17 -->
