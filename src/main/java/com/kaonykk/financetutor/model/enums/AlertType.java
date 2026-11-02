@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.kaonykk.financetutor.model.enums;
 
-/**
- *
- * @author usuario
- */
-public class AlertType {
-	
+public enum AlertType {
+	REQUEST_PENDING,
+	REQUEST_APPROVED,
+	REQUEST_REJECTED,
+	LIMIT_EXCEEDED,
+	CATEGORY_BLOCKED
 }
