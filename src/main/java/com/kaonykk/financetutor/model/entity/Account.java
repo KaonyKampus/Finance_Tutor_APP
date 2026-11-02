@@ -93,4 +93,14 @@ public class Account {
 		this.status = status;
 	}
 
+	public Set<Category> getBlockedCategories() {
+		return blockedCategories;
+	}
+
+	public void setBlockedCategories(Set<Category> blockedCategories) {
+		this.blockedCategories = blockedCategories;
+	}
+
+
+
 }
