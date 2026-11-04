@@ -1,9 +1,11 @@
-package com.kaonykk.financetutor.dao;
+//package com.kaonykk.financetutor.dao;
 
-import com.kaonykk.financetutor.model.entity.User;
-import jakarta.persistence.EntityManager;
+//import com.kaonykk.financetutor.model.entity.User;
+//import jakarta.persistence.EntityManager;
 
-public class UserDAO {
+
+//
+//public class UserDAO {
 /*
 	EntityManager em = JPAUtil;
 
@@ -19,6 +21,5 @@ try{
          .findFirst()
          .orElse(null);
 }finally{
-}*/	
-}
+//}
 
