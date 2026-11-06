@@ -1,25 +1,46 @@
-//package com.kaonykk.financetutor.dao;
+package com.kaonykk.financetutor.dao;
 
-//import com.kaonykk.financetutor.model.entity.User;
-//import jakarta.persistence.EntityManager;
+import com.kaonykk.financetutor.model.entity.Account;
+import com.kaonykk.financetutor.model.entity.User;
+import com.kaonykk.financetutor.util.JPAUtil;
+import jakarta.persistence.EntityManager;
 
+public class UserDAO {
 
-//
-//public class UserDAO {
-/*
-	EntityManager em = JPAUtil;
+	public User findByEmail(String email) {
 
-	private String findByEmail(String email) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		try {
+			return em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
+				.setParameter("email", email)
+				.getResultStream()
+				.findFirst()
+				.orElse(null);
+		} finally {
+			em.close();
+		}
 
 	}
 
+	public void save(User user, Account account) {
+		EntityManager em = JPAUtil.getEntityManager();
+		try {
+			em.getTransaction().begin();
+			em.persist(user);
 
-try{
-	return em.createQuery("SELECT u FROM User u WHERE u.email = :email", User.class)
-         .setParameter("email", email)
-         .getResultStream()
-         .findFirst()
-         .orElse(null);
-}finally{
-//}
+			if (account != null) {
+				em.persist(account);
+			}
+			em.getTransaction().commit();
+		} catch (RuntimeException e) {
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+			throw e;
+		} finally {
+			em.close();
+		}
 
+	}
+}

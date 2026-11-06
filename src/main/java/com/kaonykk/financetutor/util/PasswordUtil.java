@@ -4,6 +4,10 @@ import org.mindrot.jbcrypt.BCrypt;
 
 public class PasswordUtil {
 
+	public static Object getEntityManagerFactory() {
+		throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+	}
+
 	private PasswordUtil() {
 	}
 
