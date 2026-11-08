@@ -1,9 +1,3 @@
-<%-- 
-    Document   : register
-    Created on : 5/11/2026, 11:08:30 p. m.
-    Author     : usuario
---%>
-
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>

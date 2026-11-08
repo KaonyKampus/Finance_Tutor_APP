@@ -1,0 +1,23 @@
+package com.kaonykk.financetutor.controller;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.io.IOException;
+
+@WebServlet("/home")
+public class HomeServlet extends HttpServlet {
+//---------Atributos 
+
+	///----------Metodos 
+	//metodo get 
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		req.getRequestDispatcher("/WEB-INF/views/home/home.jsp").forward(req, resp);
+	}
+
+}
