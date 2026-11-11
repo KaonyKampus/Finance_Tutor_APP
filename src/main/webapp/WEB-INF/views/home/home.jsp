@@ -7,6 +7,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Home</title>
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">	
 	</head>
 	<body>
 		<h1>Hola, ${userName}</h1>
@@ -41,7 +42,7 @@
 				<label>Descripción</label>
 				<input type="text" name="description">
 
-				<button type="submit">Ingresar</button>
+				<button type="submit">Retirar</button>
 			</form>
 
 			<h3>Historial de movimientos</h3>
@@ -53,7 +54,7 @@
 					<th>Descripción</th>
 					<th>Saldo después</th>
 				</tr>
-				
+
 				<c:forEach var="t" items="${history}">
 					<tr>
 						<td>${t.createdAt}</td>

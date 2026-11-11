@@ -3,6 +3,7 @@ package com.kaonykk.financetutor.service;
 import com.kaonykk.financetutor.dao.AccountDAO;
 import com.kaonykk.financetutor.dao.TransactionDAO;
 import com.kaonykk.financetutor.exception.InsufficientBalanceException;
+import com.kaonykk.financetutor.exception.LimitExceededException;
 import com.kaonykk.financetutor.exception.ValidationException;
 import com.kaonykk.financetutor.model.entity.Account;
 import com.kaonykk.financetutor.model.entity.Transaction;
@@ -50,6 +51,11 @@ public class TransactionService {
 
 		if (account.getBalance().compareTo(amount) < 0) {
 			throw new InsufficientBalanceException("Saldo insuficiente");
+		}
+		
+		BigDecimal spentToday = transactionDAO.sumWithdrawalsToday(account.getId());
+		if(spentToday.add(amount).compareTo(account.getDailyLimit()) > 0){
+				throw new LimitExceededException("Superas el limite diario");
 		}
 
 		BigDecimal newBalance = account.getBalance().subtract(amount);
