@@ -4,6 +4,7 @@ import com.kaonykk.financetutor.model.entity.Account;
 import com.kaonykk.financetutor.model.entity.Transaction;
 import com.kaonykk.financetutor.util.JPAUtil;
 import jakarta.persistence.EntityManager;
+import java.util.List;
 
 public class TransactionDAO {
 
@@ -25,4 +26,18 @@ public class TransactionDAO {
 			em.close();
 		}
 	}
+
+	public List<Transaction> findByUserId(Long userId) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		try {
+			return em.createQuery("SELECT t FROM Transaction t WHERE t.account.user.id =:userId ORDER BY t.createdAt DESC", Transaction.class)
+				.setParameter("userId", userId)
+				.getResultList();
+		} finally {
+			em.close();
+		}
+
+	}
+
 }

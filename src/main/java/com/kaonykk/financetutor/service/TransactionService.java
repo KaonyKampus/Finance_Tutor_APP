@@ -8,6 +8,7 @@ import com.kaonykk.financetutor.model.entity.Account;
 import com.kaonykk.financetutor.model.entity.Transaction;
 import com.kaonykk.financetutor.model.enums.TransactionType;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class TransactionService {
 
@@ -63,4 +64,10 @@ public class TransactionService {
 		transactionDAO.saveMovement(account, transaction);
 
 	}
+
+	public List<Transaction> getHistory(Long userId) {
+		return transactionDAO.findByUserId(userId);
+	}
+	
+	
 }
