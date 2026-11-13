@@ -7,6 +7,7 @@ import com.kaonykk.financetutor.model.entity.Account;
 import com.kaonykk.financetutor.model.entity.Transaction;
 import com.kaonykk.financetutor.model.enums.WithdrawalResult;
 import com.kaonykk.financetutor.service.AccountService;
+import com.kaonykk.financetutor.service.AuthorizationService;
 import com.kaonykk.financetutor.service.TransactionService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,7 +24,9 @@ public class HomeServlet extends HttpServlet {
 
 	private final AccountService accountService = new AccountService();
 	private final TransactionService transactionService = new TransactionService();
-
+	private final AuthorizationService authorizationService = new AuthorizationService();
+	
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -42,6 +45,7 @@ public class HomeServlet extends HttpServlet {
 		} else if ("TUTOR".equals(role)) {
 			Long userId = (Long) session.getAttribute("userId");
 			req.setAttribute("wards", accountService.getByTutor(userId));
+			req.setAttribute("pending", authorizationService.getPending(userId));
 		}
 
 		req.getRequestDispatcher("/WEB-INF/views/home/home.jsp").forward(req, resp);

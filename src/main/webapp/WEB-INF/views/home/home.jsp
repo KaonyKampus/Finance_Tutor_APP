@@ -111,6 +111,32 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<h3>Solicitudes pendientes</h3>
+			<p>${requestMessage}</p>
+			<c:remove var="requestMessage" scope="session"/>
+
+			<table border="1">
+				<tr>
+					<th>Fecha</th>
+					<th>Tutelado</th>
+					<th>Monto</th>
+					<th>Decisión</th>
+				</tr>
+				<c:forEach var="r" items="${pending}">
+					<tr>
+						<td>${r.createdAt}</td>
+						<td>${r.requestedBy.name}</td>
+						<td>$${r.amount}</td>
+						<td>
+							<form method="POST" action="${pageContext.request.contextPath}/tutor/requests">
+								<input type="hidden" name="requestId" value="${r.id}">
+								<button type="submit" name="action" value="approve">Aprobar</button>
+								<button type="submit" name="action" value="reject">Rechazar</button>
+							</form>
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
 		</c:if>
 
 		<p>Tu rol es: ${userRole}</p>
