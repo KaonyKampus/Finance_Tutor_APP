@@ -2,6 +2,7 @@ package com.kaonykk.financetutor.service;
 
 import com.kaonykk.financetutor.dao.AccountDAO;
 import com.kaonykk.financetutor.model.entity.Account;
+import java.util.List;
 
 public class AccountService {
 
@@ -9,6 +10,10 @@ public class AccountService {
 
 	public Account getByUserId(Long userId) {
 		return accountDAO.findByUserId(userId);
+	}
+	
+	public List<Account> getByTutor(Long tutorId){
+		return accountDAO.findByTutor(tutorId);
 	}
 
 }

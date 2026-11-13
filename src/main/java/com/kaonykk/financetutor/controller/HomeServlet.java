@@ -37,6 +37,9 @@ public class HomeServlet extends HttpServlet {
 			List<Transaction> history = transactionService.getHistory(userId);
 			req.setAttribute("history", history);
 
+		} else if ("TUTOR".equals(role)) {
+			Long userId = (Long) session.getAttribute("userId");
+			req.setAttribute("wards",accountService.getByTutor(userId));
 		}
 
 		req.getRequestDispatcher("/WEB-INF/views/home/home.jsp").forward(req, resp);

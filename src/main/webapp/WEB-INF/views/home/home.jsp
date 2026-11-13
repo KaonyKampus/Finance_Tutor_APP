@@ -68,6 +68,24 @@
 			</table>
 		</c:if>
 
+		<c:if test="${not empty wards}">
+			<h2>Mis tutelados</h2>
+			<table border="1">
+				<tr>
+					<th>Nombre</th>
+					<th>Saldo</th>
+					<th>Límite diario</th>
+				</tr>
+				<c:forEach var="acc" items="${wards}">
+					<tr>
+						<td>${acc.user.name}</td>
+						<td>$${acc.balance}</td>
+						<td>$${acc.dailyLimit}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:if>
+
 		<p>Tu rol es: ${userRole}</p>
 		<a href="${pageContext.request.contextPath}/logout">Cerrar sesión</a>
 	</body>
