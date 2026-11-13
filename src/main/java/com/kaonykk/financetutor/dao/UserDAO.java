@@ -2,8 +2,10 @@ package com.kaonykk.financetutor.dao;
 
 import com.kaonykk.financetutor.model.entity.Account;
 import com.kaonykk.financetutor.model.entity.User;
+import com.kaonykk.financetutor.model.enums.UserRole;
 import com.kaonykk.financetutor.util.JPAUtil;
 import jakarta.persistence.EntityManager;
+import java.util.List;
 
 public class UserDAO {
 
@@ -43,4 +45,30 @@ public class UserDAO {
 		}
 
 	}
+
+	public List<User> findByRole(UserRole role) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		try {
+			return em.createQuery("SELECT u FROM User u WHERE u.role = :role ORDER BY u.name", User.class)
+				.setParameter("role", role)
+				.getResultList();
+
+		} finally {
+			em.close();
+		}
+
+	}
+
+	public User findById(Long id) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		try {
+			return em.find(User.class, id);
+
+		} finally {
+			em.close();
+		}
+	}
+
 }
