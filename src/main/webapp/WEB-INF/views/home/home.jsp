@@ -66,21 +66,48 @@
 
 				</c:forEach>
 			</table>
+
+			<h3>Mis solicitudes</h3>
+			<table border="1">
+				<tr>
+					<th>Fecha</th>
+					<th>Monto</th>
+					<th>Estado</th>
+				</tr>
+				<c:forEach var="r" items="${requests}">
+					<tr>
+						<td>${r.createdAt}</td>
+						<td>$${r.amount}</td>
+						<td>${r.status}</td>
+					</tr>
+				</c:forEach>
+			</table>
 		</c:if>
 
 		<c:if test="${not empty wards}">
 			<h2>Mis tutelados</h2>
+			<p>${limitMessage}</p>
+			<c:remove var="limitMessage" scope="session"/>
 			<table border="1">
 				<tr>
 					<th>Nombre</th>
 					<th>Saldo</th>
 					<th>Límite diario</th>
+					<th>Cambiar límite</th>
 				</tr>
 				<c:forEach var="acc" items="${wards}">
 					<tr>
 						<td>${acc.user.name}</td>
 						<td>$${acc.balance}</td>
 						<td>$${acc.dailyLimit}</td>
+						<td>      
+
+							<form method="POST" action="${pageContext.request.contextPath}/tutor/limit">
+								<input type="hidden" name="accountId" value="${acc.id}">
+								<input type="number" name="dailyLimit" step="0.01" min="0">
+								<button type="submit">Guardar</button>
+							</form>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>

@@ -42,4 +42,34 @@ public class AccountDAO {
 
 	}
 
+	public Account findById(Long id) {
+		EntityManager em = JPAUtil.getEntityManager();
+
+		try {
+			return em.find(Account.class, id);
+		} finally {
+			em.close();
+		}
+
+	}
+
+	public void update(Account account) {
+		EntityManager em = JPAUtil.getEntityManager();
+		try {
+
+			em.getTransaction().begin();
+			em.merge(account);
+			em.getTransaction().commit();
+
+		} catch (RuntimeException e) {
+			if (em.getTransaction().isActive()) {
+				em.getTransaction().rollback();
+			}
+			throw e;
+		} finally {
+			em.close();
+		}
+
+	}
+
 }

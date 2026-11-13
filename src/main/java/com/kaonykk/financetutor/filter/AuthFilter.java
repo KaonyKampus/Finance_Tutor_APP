@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/home", "/admin/*"})
+@WebFilter(urlPatterns = {"/home", "/admin/*", "/tutor/*"})
 public class AuthFilter implements Filter {
 
 	@Override
@@ -30,6 +30,11 @@ public class AuthFilter implements Filter {
 
 			return;
 
+		}
+
+		if (req.getServletPath().startsWith("/tutor") && !"TUTOR".equals(session.getAttribute("userRole"))) {
+			resp.sendRedirect(req.getContextPath() + "/home");
+			return;
 		}
 		chain.doFilter(request, response);
 	}

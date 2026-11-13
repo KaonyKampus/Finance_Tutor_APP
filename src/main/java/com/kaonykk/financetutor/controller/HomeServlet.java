@@ -5,6 +5,7 @@ import com.kaonykk.financetutor.exception.LimitExceededException;
 import com.kaonykk.financetutor.exception.ValidationException;
 import com.kaonykk.financetutor.model.entity.Account;
 import com.kaonykk.financetutor.model.entity.Transaction;
+import com.kaonykk.financetutor.model.enums.WithdrawalResult;
 import com.kaonykk.financetutor.service.AccountService;
 import com.kaonykk.financetutor.service.TransactionService;
 import jakarta.servlet.ServletException;
@@ -36,10 +37,11 @@ public class HomeServlet extends HttpServlet {
 
 			List<Transaction> history = transactionService.getHistory(userId);
 			req.setAttribute("history", history);
+			req.setAttribute("requests", transactionService.getRequests(userId));
 
 		} else if ("TUTOR".equals(role)) {
 			Long userId = (Long) session.getAttribute("userId");
-			req.setAttribute("wards",accountService.getByTutor(userId));
+			req.setAttribute("wards", accountService.getByTutor(userId));
 		}
 
 		req.getRequestDispatcher("/WEB-INF/views/home/home.jsp").forward(req, resp);
@@ -58,12 +60,17 @@ public class HomeServlet extends HttpServlet {
 			BigDecimal amount = new BigDecimal(amountText);
 			if ("INCOME".equals(type)) {
 				transactionService.deposit(userId, amount, description);
+				req.setAttribute("success", "Movimiento registrado");
+
 			} else if ("WITHDRAWAL".equals(type)) {
-				transactionService.withdraw(userId, amount, description);
+				WithdrawalResult result = transactionService.withdraw(userId, amount, description);
+
+				if (result == WithdrawalResult.PENDING_APPROVAL) {
+					req.setAttribute("success", "Tu retiro supera el límite diario. Se envió una solicitud a tu tutor.");
+				} else {
+					req.setAttribute("success", "Movimiento registrado");
+				}
 			}
-
-			req.setAttribute("success", "movimiento registrado");
-
 		} catch (NumberFormatException | NullPointerException e) {
 			req.setAttribute("error", "Ingresa un monto válido");
 		} catch (ValidationException | InsufficientBalanceException | LimitExceededException e) {
