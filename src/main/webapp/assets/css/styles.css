@@ -1,1 +1,290 @@
+/* =========================================================
+   FinanceTutor - hoja de estilos
+   Paleta: azul medianoche + cobre (combina con el portafolio)
+   ========================================================= */
 
+:root {
+    --midnight: #1E2A4A;
+    --midnight-soft: #2C3B63;
+    --copper: #B87333;
+    --copper-soft: #F6EADF;
+    --bg: #F4F6FA;
+    --surface: #FFFFFF;
+    --border: #E2E6EF;
+    --text: #1F2433;
+    --muted: #6B7285;
+    --success: #1E8A5A;
+    --success-bg: #E5F5EC;
+    --danger: #C0392B;
+    --danger-bg: #FBEAE8;
+    --warning: #A86B0C;
+    --warning-bg: #FCF1DD;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(30, 42, 74, 0.08), 0 4px 12px rgba(30, 42, 74, 0.05);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+}
+
+h1, h2, h3 { margin: 0 0 12px; font-weight: 600; color: var(--midnight); }
+h1 { font-size: 1.6rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.05rem; }
+a { color: var(--midnight-soft); }
+
+/* ---------- Barra superior ---------- */
+.topbar {
+    background: var(--midnight);
+    color: #fff;
+    padding: 14px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.brand { font-size: 1.15rem; font-weight: 700; letter-spacing: 0.3px; color: #fff; text-decoration: none; }
+.brand span { color: var(--copper); }
+.topbar-right { display: flex; align-items: center; gap: 16px; font-size: 0.92rem; }
+.topbar a { color: #fff; text-decoration: none; opacity: 0.85; }
+.topbar a:hover { opacity: 1; }
+.role-badge {
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    letter-spacing: 0.4px;
+}
+
+/* ---------- Contenedor y tarjetas ---------- */
+.container { max-width: 1080px; margin: 28px auto; padding: 0 20px; }
+.page-title { margin-bottom: 20px; }
+.page-title p { margin: 0; color: var(--muted); }
+
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 22px 24px;
+    margin-bottom: 20px;
+}
+
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-2 .card { margin-bottom: 0; }
+
+/* ---------- Tarjeta de saldo ---------- */
+.balance-card {
+    background: linear-gradient(135deg, var(--midnight) 0%, var(--midnight-soft) 100%);
+    color: #fff;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.balance-card .label { font-size: 0.85rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 1px; }
+.balance-card .amount { font-size: 2.4rem; font-weight: 700; }
+.balance-card .limit {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(184, 115, 51, 0.6);
+    padding: 10px 16px;
+    border-radius: 10px;
+    text-align: right;
+}
+.balance-card .limit strong { display: block; font-size: 1.2rem; color: #F2C79E; }
+
+/* ---------- Formularios ---------- */
+.form-group { margin-bottom: 14px; }
+label { display: block; font-size: 0.85rem; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    background: #FBFCFE;
+    color: var(--text);
+}
+input:focus, select:focus { outline: none; border-color: var(--copper); box-shadow: 0 0 0 3px var(--copper-soft); }
+
+/* ---------- Botones ---------- */
+.btn {
+    display: inline-block;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.05s ease, opacity 0.15s ease;
+}
+.btn:active { transform: translateY(1px); }
+.btn:hover { opacity: 0.9; }
+.btn-primary { background: var(--midnight); color: #fff; }
+.btn-accent { background: var(--copper); color: #fff; }
+.btn-success { background: var(--success); color: #fff; }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-sm { padding: 6px 12px; font-size: 0.82rem; }
+.btn-block { width: 100%; }
+
+/* ---------- Mensajes ---------- */
+.alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 16px; font-size: 0.92rem; }
+.alert-error { background: var(--danger-bg); color: var(--danger); border: 1px solid #F3C5BF; }
+.alert-success { background: var(--success-bg); color: var(--success); border: 1px solid #BFE6CF; }
+.alert-info { background: var(--copper-soft); color: #7A4A1F; border: 1px solid #EBCFB4; }
+
+/* ---------- Tablas ---------- */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th {
+    text-align: left;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--muted);
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--border);
+}
+td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: #F8FAFD; }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.empty { color: var(--muted); text-align: center; padding: 20px; }
+
+.inline-form { display: flex; gap: 8px; align-items: center; margin: 0; }
+.inline-form input[type="number"] { width: 140px; }
+
+/* ---------- Etiquetas de estado ---------- */
+.badge { display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+.badge-income, .badge-approved { background: var(--success-bg); color: var(--success); }
+.badge-withdrawal, .badge-rejected { background: var(--danger-bg); color: var(--danger); }
+.badge-pending { background: var(--warning-bg); color: var(--warning); }
+.amount-in { color: var(--success); font-weight: 600; }
+.amount-out { color: var(--danger); font-weight: 600; }
+
+/* ---------- Pie ---------- */
+.footer { text-align: center; color: var(--muted); font-size: 0.8rem; padding: 10px 0 30px; }
+
+/* ---------- Login con efecto vidrio ---------- */
+.glass-page {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    overflow: hidden;
+    background: #141C33;
+}
+.glass-page .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.55;
+    pointer-events: none;
+}
+.glass-page .blob-1 { width: 420px; height: 420px; background: #B87333; top: -120px; left: -100px; }
+.glass-page .blob-2 { width: 360px; height: 360px; background: #2C5BA8; bottom: -120px; right: -80px; }
+.glass-page .blob-3 { width: 220px; height: 220px; background: #D9955B; bottom: 18%; left: 22%; opacity: 0.35; }
+
+.glass-card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    padding: 36px 32px 30px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+    color: #fff;
+}
+.glass-brand { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 6px; }
+.glass-brand svg { width: 34px; height: 34px; }
+.glass-brand h1 { margin: 0; font-size: 1.7rem; font-weight: 700; color: #fff; }
+.glass-brand h1 span { color: #E9A56A; }
+.glass-subtitle { text-align: center; margin: 0 0 26px; color: rgba(255, 255, 255, 0.7); font-size: 0.92rem; }
+
+.glass-card label { color: rgba(255, 255, 255, 0.8); }
+.glass-card input[type="email"],
+.glass-card input[type="password"],
+.glass-card input[type="text"] {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 10px;
+}
+.glass-card input::placeholder { color: rgba(255, 255, 255, 0.45); }
+.glass-card input:focus { border-color: #E9A56A; box-shadow: 0 0 0 3px rgba(233, 165, 106, 0.25); }
+
+/* Que el autocompletado de Chrome no pinte los campos de azul claro */
+.glass-card input:-webkit-autofill,
+.glass-card input:-webkit-autofill:hover,
+.glass-card input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0 1000px #2A3350 inset;
+    caret-color: #fff;
+    transition: background-color 9999s ease-in-out 0s;
+}
+
+.password-wrap { position: relative; }
+.password-wrap input { padding-right: 46px !important; }
+.toggle-password {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 6px;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+}
+.toggle-password:hover { color: #fff; }
+.toggle-password svg { width: 20px; height: 20px; }
+
+.glass-card .btn-glass {
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #C9824A 0%, #B87333 100%);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(184, 115, 51, 0.35);
+}
+.glass-card .btn-glass:hover { opacity: 0.92; }
+
+.glass-card .alert-error { background: rgba(192, 57, 43, 0.2); color: #FFD2CC; border: 1px solid rgba(255, 140, 125, 0.4); }
+.glass-footer { text-align: center; margin-top: 22px; font-size: 0.76rem; color: rgba(255, 255, 255, 0.5); }
+
+/* ---------- Celular ---------- */
+@media (max-width: 760px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .topbar { padding: 12px 16px; }
+    .balance-card .amount { font-size: 2rem; }
+    .balance-card .limit { text-align: left; }
+    .inline-form { flex-wrap: wrap; }
+    .inline-form input[type="number"] { width: 100%; }
+}
