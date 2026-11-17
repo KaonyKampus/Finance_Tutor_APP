@@ -1,4 +1,0 @@
-Label,# Samples,Average,Median,90% Line,95% Line,99% Line,Min,Max,Error %,Throughput,Received KB/sec,Sent KB/sec
-HTTP Request - Login,144745,202,128,404,589,1111,3,2779,0.006%,80.45519,222.08,46.98
-HTTP Request - Rendimiento30,144740,0,0,1,1,2,0,178,0.000%,80.46399,911.96,9.27
-TOTAL,289485,101,54,261,404,893,0,2779,0.003%,160.90760,1133.91,56.25
